@@ -1,12 +1,20 @@
-const express = require('express')
+const express = require(`express`);
 
-const apiRouter = require('./api-router.js')
-const configureMiddleware =  require('./configure-middleware')
+const router = require(`../data/users/users-router`);
 
-const server = express()
+const port = process.env.PORT || 4000;
 
-configureMiddleware(server)
+const server = express();
 
-server.use('/api', apiRouter)
+server.use(`/api`, router);
 
-module.exports = server 
+const start = () =>
+  server.listen(port, () =>
+    console.log(`\n **Server running on port ${port}**\n`)
+  );
+
+  server.get('/', (req, res) => {
+      res.json({message: 'server is sane'})
+  })
+
+module.exports = { start };

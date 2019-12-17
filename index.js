@@ -1,7 +1,3 @@
-const server = require('./api/server.js')
+const api = require(`./api/server`);
 
-const port = 0012
-
-server.listen(port, () => {
-    console.log(`server is running on ${port}`)
-})
+api.start();
